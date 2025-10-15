@@ -1,0 +1,80 @@
+body {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #1a1a1a;
+    font-family: 'Poppins', sans-serif;
+}
+
+.glowing-btn {
+    position: relative;
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 20px;
+    background: transparent;
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    outline: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.glowing-btn::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    background: #272727;
+    border-radius: inherit;
+    z-index: -1;
+    transition: background 0.4s ease-in-out;
+}
+
+.glowing-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    z-index: -2;
+    background: conic-gradient(#00aaff,
+            #ff00ea,
+            #ff8d00,
+            #00aaff);
+    transform-origin: center center;
+    animation: rotateGlow 4s linear infinite;
+    filter: blur(12px);
+    opacity: 0.8;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.glowing-btn:hover::after {
+    background: linear-gradient(90deg, #0077ff, #ff00c3);
+}
+
+.glowing-btn:hover::before {
+    filter: blur(24px);
+    opacity: 1;
+}
+
+@keyframes rotateGlow {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
